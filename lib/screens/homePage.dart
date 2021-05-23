@@ -36,11 +36,54 @@ class _MyHomePageState extends State<MyHomePage> {
               (context , index){
                 var article = snapshot.data!.articles[index];
               return Container(
-              height: 100,
+              height: 150,
+              margin: EdgeInsets.all(3),
+              
               child: Row(children: [
-                Image.network(
-                article.urlToImage
-                ),
+                 Card(
+                            clipBehavior: Clip.antiAlias,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: AspectRatio(
+                                aspectRatio: 1,
+                                child: Image.network(
+                                  article.urlToImage,
+                                  fit: BoxFit.cover,
+                                )),
+                          ),
+
+                          SizedBox(width: 5,),
+
+                          Flexible(
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+
+                                Container(
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                                  child: Text(article.title,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    
+                                    fontWeight: FontWeight.bold
+                                  ),
+                                  overflow: TextOverflow.ellipsis,),
+                                ),
+
+                                Container(
+
+                                  margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
+
+                                  child: Text(article.description,
+                                  maxLines: 4,
+                                  overflow: TextOverflow.ellipsis,),
+                                )
+                              ],
+                            ),
+                          )
+
+
               ],),
             );
           }); 
